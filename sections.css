@@ -45,7 +45,7 @@
   padding: 2rem;
   background: var(--glass);
   backdrop-filter: blur(8px);
-  border: 0px solid var(--text); /*0.3 initial*/
+  /* border: 0px solid var(--text); /*0.3 initial*/
   border-left: 1px dotted var(--x);
   height: calc(100% - 2rem);
   overflow-y: auto;
