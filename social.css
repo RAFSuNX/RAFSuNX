@@ -11,7 +11,7 @@
   color: var(--text);
   text-decoration: none;
   padding: 0.5rem 1rem;
-  border: 0.3px solid var(--text);
+  border: 0px solid var(--text); /*0.3 was initially*/
   border-left: 1px dotted var(--x);
   transition: all 0.3s ease;
 }
