@@ -1,0 +1,137 @@
+@font-face {
+  font-family: "zillaslabLight";
+  src: url("/fonts/ZillaSlab-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: "spacemonoRegular";
+  src: url("/fonts/SpaceMono-Regular.ttf") format("truetype");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  transition: all 0.5ms;
+  font-family: sans-serif;
+}
+
+#main {
+  margin: 0;
+  padding: 0;
+  min-width: 100dvw;
+  min-height: 100dvh;
+  overflow: hidden;
+  position: relative;
+  background-size: cover;
+  background-color: var(--accent);
+  z-index: 0;
+  background-attachment: fixed;
+  transition: background-image 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.noise {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  width: 200%;
+  height: 200vh;
+  background: transparent url("images/noise.png") repeat 0 0;
+  background-repeat: repeat;
+  animation: bg-animation 0.2s infinite;
+  opacity: 1;
+  visibility: visible;
+  z-index: 1;
+}
+
+.container {
+  min-width: 95dvw;
+  min-height: 95dvh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--glass);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 12px 32px 0 var(--accent);
+  border: 0.3px solid var(--text);
+  z-index: 2;
+  display: block;
+}
+
+.tag {
+  width: 50vw;
+  max-width: 300px;
+  height: 10dvh;
+  max-height: 80px;
+  top: 5dvh;
+  left: 8dvw;
+  border: 0.3px solid var(--text);
+  border-left: 1px dotted var(--x);
+  position: absolute;
+  display: flex;
+  float: left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  align-items: center;
+}
+
+.tag .name {
+  margin-left: 10%;
+  color: var(--text);
+  font-size: 2.3rem;
+  font-weight: 500;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-family: "zillaslabLight", sans-serif;
+}
+
+.name span:nth-child(1) {
+  color: var(--x);
+  font-size: 2.5rem;
+  font-weight: 300;
+}
+
+.name span::after {
+  content: "";
+  margin-left: 3px;
+  margin-bottom: -0.3px;
+  width: 20px;
+  height: 2px;
+  display: inline-block;
+  background-color: var(--text);
+  animation: blink-animation 1s infinite;
+}
+
+#timer {
+  float: right;
+  color: var(--text);
+  font-family: monospace;
+  font-size: 1.1rem;
+  margin-right: 10px;
+  margin-top: 7px;
+}
+
+@keyframes blink-animation {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes bg-animation {
+  0% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -5%); }
+  20% { transform: translate(-10%, 5%); }
+  30% { transform: translate(5%, -10%); }
+  40% { transform: translate(-5%, 15%); }
+  50% { transform: translate(-10%, 5%); }
+  60% { transform: translate(15%, 0); }
+  70% { transform: translate(0, 10%); }
+  80% { transform: translate(-15%, 0); }
+  90% { transform: translate(10%, 5%); }
+  100% { transform: translate(5%, 0); }
+}

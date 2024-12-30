@@ -1,0 +1,10 @@
+@import 'cards.css';
+
+/* Projects Specific */
+.project-grid {
+  composes: card-grid;
+}
+
+.project-card {
+  composes: card;
+}

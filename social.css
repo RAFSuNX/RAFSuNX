@@ -1,0 +1,22 @@
+/* Social Links Styling */
+.social-links {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding-left: 1rem;
+  border-left: 1px dotted var(--text);
+}
+
+.social-link {
+  color: var(--text);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border: 0.3px solid var(--text);
+  border-left: 1px dotted var(--x);
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  background: var(--glass);
+  transform: translateY(-2px);
+}

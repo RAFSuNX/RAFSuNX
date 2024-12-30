@@ -1,0 +1,24 @@
+@import 'cards.css';
+
+/* Skills Specific */
+.skills-grid {
+  composes: card-grid;
+}
+
+.skill-card {
+  composes: card;
+}
+
+.proficiency-bar {
+  width: 100%;
+  height: 6px;
+  background: var(--accent);
+  margin-top: 1rem;
+  overflow: hidden;
+}
+
+.proficiency-level {
+  height: 100%;
+  background: var(--x);
+  transition: width 0.3s ease;
+}
