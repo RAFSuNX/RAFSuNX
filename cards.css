@@ -12,7 +12,7 @@
   border: 0.3px solid var(--text);
   border-left: 1px dotted var(--x);
   padding: 1.5rem;
-  height: 200px;
+  min-height: 210px; /* Increase height by 10px */
   display: flex;
   flex-direction: column;
   backdrop-filter: blur(8px);
@@ -25,7 +25,7 @@
   font-size: 1.5rem;
   margin-bottom: 1rem;
   font-family: "zillaslabLight", sans-serif;
-  padding-left: 1rem;
+  padding-left: 2rem; /* Reduced padding to reduce spacing */
   border-left: 1px dotted var(--x);
 }
 
@@ -33,8 +33,9 @@
   color: var(--text);
   margin-bottom: auto;
   line-height: 1.5;
-  padding-left: 1rem;
+  padding-left: 2rem; /* Reduced padding to reduce spacing */
   border-left: 1px dotted var(--text);
+  overflow-y: auto; /* Add scrollbar if text overflows */
 }
 
 /* Tech Stack */
@@ -60,4 +61,29 @@
 .tech-tag:hover {
   transform: translateY(-2px);
   opacity: 0.9;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  
+  .card {
+    padding: 1rem; /* Reduced padding for smaller screens */
+    min-height: 160px; /* Increase height by 10px */
+  }
+}
+
+@media (max-width: 480px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  .card {
+    padding: 0.5rem; /* Reduced padding for smaller screens */
+    min-height: 110px; /* Increase height by 10px */
+  }
 }

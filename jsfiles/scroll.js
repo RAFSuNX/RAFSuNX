@@ -1,4 +1,4 @@
-import { TRANSITION_DURATION, SCROLL_DEBOUNCE, Direction } from './constants.js';
+import { SCROLL_DEBOUNCE } from './constants.js';
 import { animateSection } from './animations.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -7,9 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let isAnimating = false;
   const totalSections = sections.length;
   
-  // Track active card manager
-  let activeCardManager = null;
-
   // Initialize first section
   updateSections();
 
@@ -21,50 +18,37 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Check if we're in a section with cards
     if (currentSectionElement.id === 'projects' || currentSectionElement.id === 'skills') {
-      // Get the card manager from the section element
       const cardManager = currentSectionElement.cardManager;
-      
-      // If the card manager handles the scroll, don't proceed with section scroll
       if (cardManager && cardManager.handleScroll(e)) {
         return;
       }
     }
 
-    // If card manager didn't handle the scroll, proceed with section navigation
+    // Handle section navigation
     if (e.deltaY > 0 && currentSection < totalSections - 1) {
-      // Scroll down - move right
-      moveSection(Direction.RIGHT);
+      currentSection++;
+      updateSections();
     } else if (e.deltaY < 0 && currentSection > 0) {
-      // Scroll up - move left
-      moveSection(Direction.LEFT);
+      currentSection--;
+      updateSections();
     }
   }, SCROLL_DEBOUNCE));
 
-  function moveSection(direction) {
+  function updateSections() {
+    if (isAnimating) return;
     isAnimating = true;
     
-    if (direction === Direction.RIGHT) {
-      currentSection++;
-    } else {
-      currentSection--;
-    }
-    
-    updateSections(direction);
+    sections.forEach((section, index) => {
+      const offset = (index - currentSection) * 100;
+      animateSection(section, null, offset);
+    });
 
     // Reset animation lock after transition
     setTimeout(() => {
       isAnimating = false;
-    }, TRANSITION_DURATION);
+    }, 1000); // Match new animation duration
   }
 
-  function updateSections(direction = Direction.RIGHT) {
-    sections.forEach((section, index) => {
-      const offset = (index - currentSection) * 100;
-      animateSection(section, direction, offset);
-    });
-  }
-
-  // Debounce helper function
   function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
