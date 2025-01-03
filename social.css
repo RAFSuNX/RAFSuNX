@@ -2,7 +2,8 @@
 .social-links {
   display: flex;
   gap: 40px;
-  margin-top: 2rem;
+  row-gap: 5px;
+  margin-top: 0.5em;
   padding-left: 1rem;
   border-left: 1px dotted var(--text);
   flex-wrap: wrap; /* Add flex-wrap to make the social links responsive */
@@ -12,7 +13,7 @@
   color: var(--text);
   text-decoration: none;
   padding: 0.5rem 0.2rem;
-  border: 0px solid var(--text); /*0.3 was initially*/
+  border: 0px solid var(--text);
   transition: all 0.3s ease;
   text-align: center;
 }

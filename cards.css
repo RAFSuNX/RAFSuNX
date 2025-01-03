@@ -1,41 +1,43 @@
 /* Card Grid Layout */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  margin-top: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  height: auto;
+  padding: 0rem;
+  margin-top: 2rem;
 }
 
-/* Card Styling */
+/* Card Base */
 .card {
   background: var(--glass);
   border: 0.3px solid var(--text);
   border-left: 1px dotted var(--x);
-  padding: 1.5rem;
-  min-height: 210px; /* Increase height by 10px */
+  padding: 1.75rem;
+  min-height: 200px;
   display: flex;
   flex-direction: column;
   backdrop-filter: blur(8px);
-  will-change: transform, opacity, filter;
-  transform-origin: center;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
+/* Card Title */
 .card h3 {
   color: var(--x);
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  font-family: "zillaslabLight", sans-serif;
-  padding-left: 2rem; /* Reduced padding to reduce spacing */
+  padding-left: 1rem;
   border-left: 1px dotted var(--x);
 }
 
+/* Card Content */
 .card p {
   color: var(--text);
   margin-bottom: auto;
-  line-height: 1.5;
-  padding-left: 2rem; /* Reduced padding to reduce spacing */
+  line-height: 1.6;
+  padding-left: 1rem;
   border-left: 1px dotted var(--text);
-  overflow-y: auto; /* Add scrollbar if text overflows */
 }
 
 /* Tech Stack */
@@ -43,7 +45,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-top: auto;
+  margin-top: 1.5rem;
+  padding-left: 1rem;
 }
 
 .tech-tag {
@@ -53,37 +56,35 @@
   font-size: 0.85rem;
   border: 0.3px solid var(--text);
   border-left: 1px dotted var(--x);
-  padding-left: 1rem;
   backdrop-filter: blur(8px);
-  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.tech-tag:hover {
-  transform: translateY(-2px);
-  opacity: 0.9;
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+  .card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
 }
 
-/* Media Queries for Responsive Design */
 @media (max-width: 768px) {
   .card-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1rem;
   }
   
   .card {
-    padding: 1rem; /* Reduced padding for smaller screens */
-    min-height: 160px; /* Increase height by 10px */
+    padding: 1.5rem;
+    min-height: 180px;
   }
 }
 
 @media (max-width: 480px) {
   .card-grid {
     grid-template-columns: 1fr;
-    gap: 0.5rem;
   }
   
   .card {
-    padding: 0.5rem; /* Reduced padding for smaller screens */
-    min-height: 110px; /* Increase height by 10px */
+    padding: 1.25rem;
+    min-height: 160px;
   }
 }

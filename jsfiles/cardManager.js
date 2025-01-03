@@ -8,7 +8,7 @@ export class CardManager {
     this.cards = Array.from(this.cardGrid.querySelectorAll('.card'));
     this.totalCards = this.cards.length;
     this.isAnimating = false;
-    this.scrollTimeout = null;
+    this.cardsPerView = this.calculateCardsPerView();
     
     // Track scroll state
     this.canScrollUp = false;
@@ -16,10 +16,28 @@ export class CardManager {
     
     // Throttle scroll handling
     this.lastScrollTime = 0;
-    this.scrollThreshold = 100; // ms between scroll events
+    this.scrollThreshold = 100;
 
     // Initialize cards
     this.initializeCards();
+    
+    // Add resize listener
+    window.addEventListener('resize', () => {
+      const newCardsPerView = this.calculateCardsPerView();
+      if (newCardsPerView !== this.cardsPerView) {
+        this.cardsPerView = newCardsPerView;
+        this.currentIndex = Math.floor(this.currentIndex / newCardsPerView) * newCardsPerView;
+        this.updateVisibility();
+      }
+    });
+  }
+
+  calculateCardsPerView() {
+    const containerWidth = this.cardGrid.offsetWidth;
+    const cardWidth = 300;
+    const gap = 24;
+    const possibleCards = Math.floor((containerWidth + gap) / (cardWidth + gap));
+    return Math.max(1, Math.min(possibleCards, 3));
   }
 
   initializeCards() {
@@ -33,7 +51,6 @@ export class CardManager {
       });
     });
     
-    // Show initial cards with animation
     requestAnimationFrame(() => {
       this.updateVisibility();
     });
@@ -44,7 +61,7 @@ export class CardManager {
     
     const now = Date.now();
     if (now - this.lastScrollTime < this.scrollThreshold) {
-      return true; // Still throttling
+      return true;
     }
     this.lastScrollTime = now;
     
@@ -60,12 +77,17 @@ export class CardManager {
   }
 
   updateVisibility() {
-    const visibleCards = this.cards.slice(this.currentIndex, this.currentIndex + 3);
+    // Hide all cards first
+    this.cards.forEach(card => {
+      card.style.display = 'none';
+    });
+
+    const visibleCards = this.cards.slice(this.currentIndex, this.currentIndex + this.cardsPerView);
     let maxDelay = 0;
     
     // Update scroll state
     this.canScrollUp = this.currentIndex > 0;
-    this.canScrollDown = this.currentIndex + 3 < this.totalCards;
+    this.canScrollDown = this.currentIndex + this.cardsPerView < this.totalCards;
     
     // Show visible cards
     visibleCards.forEach((card, index) => {
@@ -83,28 +105,21 @@ export class CardManager {
     this.isAnimating = true;
     
     // Hide current cards with staggered exit animation
-    const currentCards = this.cards.slice(this.currentIndex, this.currentIndex + 3);
+    const currentCards = this.cards.slice(this.currentIndex, this.currentIndex + this.cardsPerView);
     currentCards.forEach((card, index) => {
       applyCardAnimation(card, index, false);
     });
     
-    // Update index after exit animation starts
     setTimeout(() => {
-      // Hide previous cards
-      currentCards.forEach(card => {
-        card.style.display = 'none';
-      });
-      
+      // Calculate next index
       if (direction === 'next') {
-        this.currentIndex = Math.min(this.currentIndex + 3, this.totalCards - 3);
+        this.currentIndex = Math.min(this.currentIndex + this.cardsPerView, this.totalCards - this.cardsPerView);
       } else {
-        this.currentIndex = Math.max(this.currentIndex - 3, 0);
+        this.currentIndex = Math.max(this.currentIndex - this.cardsPerView, 0);
       }
       
-      // Show new cards with animation
       const maxDelay = this.updateVisibility();
       
-      // Reset animation lock after all animations complete
       setTimeout(() => {
         this.isAnimating = false;
       }, maxDelay);

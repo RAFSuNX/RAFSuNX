@@ -6,10 +6,8 @@
   right: 0;
   bottom: 0;
   display: flex;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
+  overflow: hidden;
   padding: 0 8dvw;
-  will-change: transform;
 }
 
 .section {
@@ -19,86 +17,85 @@
   padding: 2rem;
   color: var(--text);
   opacity: 0;
-  transform: translateY(20px) scale(0.98);
-  filter: blur(3px);
+  transform: translateX(100px);
   position: absolute;
   left: 0;
   width: 100%;
-  will-change: transform, opacity, filter;
-  backface-visibility: hidden;
-  -webkit-font-smoothing: antialiased;
+  transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+  overflow: hidden; /* Prevent scrolling */
 }
 
 .section.active {
   opacity: 1;
-  transform: translateY(0) scale(1);
-  filter: blur(0);
+  transform: translateX(0);
   z-index: 1;
 }
 
 /* Section Positioning */
-#about { transform: translateX(-100%); }
-#projects { transform: translateX(0); }
-#skills { transform: translateX(100%); }
+#about {
+  transform: translateX(-100%);
+}
+
+#projects {
+  transform: translateX(0);
+}
+
+#skills {
+  transform: translateX(100%);
+}
+
+.section.active#about,
+.section.active#projects,
+.section.active#skills {
+  transform: translateX(0);
+}
 
 /* Content Layout */
 .content {
   position: relative;
-  padding: 2rem;
-  border-left: 1px dotted var(--x);
-  height: calc(100% - 2rem);
-  overflow-y: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  will-change: transform, opacity, filter;
-  transform-origin: center;
-}
-
-.content::-webkit-scrollbar {
-  display: none;
+  padding: 1.5rem;
+  border-left: 1px dotted var(--x);
+  overflow: hidden; /* Prevent scrolling */
 }
 
 /* Section Headers */
 .content h2 {
+  position: sticky;
+  top: 0;
   font-family: "zillaslabLight", sans-serif;
   font-size: 2.3rem;
   color: var(--x);
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
   padding-left: 1rem;
   border-left: 1px dotted var(--x);
-  margin: 0;
-  z-index: 1;
+  margin-bottom: 1.5rem;
+  z-index: 2;
 }
 
-/* Section Content Padding */
-.content > *:not(h2) {
-  margin-top: 5rem;
-}
-
-/* About Section Specific */
+/* About Section */
 #about .content {
-  justify-content: center;
-  gap: 2rem;
+  justify-content: flex-start;
+  padding-top: 3rem;
+}
+
+#about .content h2 {
+  margin-bottom: 4rem;
 }
 
 #about .content p {
   padding-left: 1rem;
   border-left: 1px dotted var(--text);
   line-height: 1.5;
-  margin: 0;
+  margin-bottom: 2rem;
 }
 
-#about .social-links {
-  margin-top: 0;
-}
-
-/* Content Text */
-.content p {
-  padding-left: 1rem;
-  border-left: 1px dotted var(--text);
-  line-height: 1.5;
+/* Projects & Skills Grid Container */
+.card-grid-container {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  padding-right: 0.5rem;
+  margin-top: 0.5rem;
 }

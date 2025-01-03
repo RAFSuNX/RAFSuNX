@@ -9,12 +9,12 @@ const ANIMATION_CONFIG = {
 const STATES = {
   hidden: {
     opacity: '0',
-    transform: 'translateY(20px) scale(0.98)',
+    transform: 'translate3d(0, 20px, 0) scale(0.98)',
     filter: 'blur(3px)',
   },
   visible: {
     opacity: '1',
-    transform: 'translateY(0) scale(1)',
+    transform: 'translate3d(0, 0, 0) scale(1)',
     filter: 'blur(0)',
   },
 };
@@ -26,8 +26,7 @@ export function applyCardAnimation(card, index, isEntering) {
   // Apply initial state immediately for entering cards
   if (isEntering) {
     Object.assign(card.style, STATES.hidden);
-    // Force reflow to ensure the initial state is applied
-    card.offsetHeight;
+    card.offsetHeight; // Force reflow
   }
   
   card.style.transition = `
