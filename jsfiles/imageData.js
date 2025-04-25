@@ -15,10 +15,10 @@ export const imageData = [
     `,
   },
   {
-    image: "/images/image3.jpg",
+    image: "https://i.postimg.cc/PxF5M9jY/image3.jpg",
     styles: `
       #main {
-        background-image: url('./images/image3.jpg');
+        background-image: url('https://i.postimg.cc/PxF5M9jY/image3.jpg');
       }
       :root {
         --accent: #000000;
