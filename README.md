@@ -23,11 +23,12 @@
 whoami:
   handles: [ "RAFSuNX" ]
   interests:
+    - homelab & self-hosting everything
+    - kubernetes & container orchestration
     - android kernels & custom ROMs
-    - self-hosting & homelab
     - open source contributions
-    - web apps (that sometimes ship)
-  currently: "breaking things in a controlled environment"
+  currently: "overengineering my homelab with k8s"
+  also: "breaking things in a controlled environment"
 ```
 
 ---
@@ -43,6 +44,9 @@ whoami:
   <img src="https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black" />
   <img src="https://img.shields.io/badge/Android-3DDC84?style=flat-square&logo=android&logoColor=white" />
   <img src="https://img.shields.io/badge/Bash-4EAA25?style=flat-square&logo=gnubash&logoColor=white" />
+  <img src="https://img.shields.io/badge/Claude_Code-D4956A?style=flat-square&logo=anthropic&logoColor=white" />
+  <img src="https://img.shields.io/badge/Codex-412991?style=flat-square&logo=openai&logoColor=white" />
+  <img src="https://img.shields.io/badge/Gemini-4285F4?style=flat-square&logo=googlegemini&logoColor=white" />
 </p>
 
 ---
