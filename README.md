@@ -33,16 +33,6 @@
 
 ---
 
-### notable projects
-
-| project | description |
-|---------|-------------|
-| [seerr](https://github.com/RAFSuNX/seerr) | fork of seerr with custom theming system |
-| [crave_aosp_builder](https://github.com/RAFSuNX/crave_aosp_builder) | AOSP build automation with Crave |
-| [server-hub](https://github.com/RAFSuNX/server-hub) | self-hosted server management |
-
----
-
 ### stats
 
 <p align="center">
